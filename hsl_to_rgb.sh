@@ -3,8 +3,8 @@ hue_to_rgb() {
   local v2=$2
   local vH=$3
 
-  if [ $(echo "$vH < 0" | bc -l) -eq 1 ]; then vH=$(bc -l <<< "$vh + 1"); fi
-  if [ $(echo "$vH > 1" | bc -l) -eq 1 ]; then vH=$(bc -l <<< "$vh - 1"); fi
+  if [ $(echo "$vH < 0" | bc -l) -eq 1 ]; then vH=$(bc -l <<< "$vH + 1"); fi
+  if [ $(echo "$vH > 1" | bc -l) -eq 1 ]; then vH=$(bc -l <<< "$vH - 1"); fi
   if [ $(echo "(6 * $vH) < 1" | bc -l) -eq 1 ]; then echo $(bc -l <<< "$v1 + ( $v2 - $v1 ) * 6 * $vH"); exit; fi
   if [ $(echo "(2 * $vH) < 1" | bc -l) -eq 1 ]; then echo $v2; exit; fi
   if [ $(echo "(3 * $vH) < 2" | bc -l) -eq 1 ]; then echo $(bc -l <<< "$v1 + ( $v2 - $v1 ) * ( ( 2 / 3 ) - $vH ) * 6"); exit; fi
@@ -36,14 +36,14 @@ else
 
   temp_vH=$(echo "$H + (1 / 3)" | bc -l)
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$temp_vH"`
-  R=$(bc <<< "scale=0; 255 * $temp_val")
+  R=$(bc <<< "scale=0; (255 * $temp_val) / 1")
 
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$H"`
-  G=$(bc <<< "scale=0; 255 * $temp_val")
+  G=$(bc <<< "scale=0; (255 * $temp_val) / 1")
 
   temp_vH=$(echo "$H - (1 / 3)" | bc -l)
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$temp_vH"`
-  B=$(bc <<< "scale=0; 255 * $temp_val")
+  B=$(bc <<< "scale=0; (255 * $temp_val) / 1")
 fi
 
 printf "%.2x%.2x%.2x" $R $G $B
