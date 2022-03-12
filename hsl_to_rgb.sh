@@ -29,21 +29,21 @@ if [ $(echo "$S == 0" | bc -l) -eq 1 ]; then
   B=$(bc <<< "$L * 255")
 else
   if [ $(echo "$L < 0.5" | bc -l) -eq 1 ]; then
-    var_2=[ $(echo "$L * (1 + $S)" | bc -l) ]
+    var_2=$(echo "$L * (1 + $S)" | bc -l)
   else
-    var_2=[ $(echo "($L + $S) - ( $S * $L )" | bc -l) ]
+    var_2=$(echo "($L + $S) - ( $S * $L )" | bc -l)
   fi
 
-  var_1=[ $(echo "2 * $L - $var_2" | bc -l) ]
+  var_1=$(echo "2 * $L - $var_2" | bc -l)
 
-  temp_vH=[ $(echo "$H + (1 / 3)" | bc -l) ]
+  temp_vH=$(echo "$H + (1 / 3)" | bc -l)
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$temp_vH"`
   R=$(bc <<< "255 * $temp_val")
 
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$H"`
   G=$(bc <<< "255 * $temp_val")
 
-  temp_vH=[ $(echo "$H - (1 / 3)" | bc -l) ]
+  temp_vH=$(echo "$H - (1 / 3)" | bc -l)
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$temp_vH"`
   B=$(bc <<< "255 * $temp_val")
 fi
