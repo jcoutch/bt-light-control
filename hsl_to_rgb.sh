@@ -1,3 +1,5 @@
+set -x
+
 hue_to_rgb() {
   local v1=$1
   local v2=$2
