@@ -22,9 +22,9 @@ var_1=0
 var_2=0
 
 if [ $(echo "$S == 0" | bc -l) -eq 1 ]; then
-  R=$(bc <<< "$L * 255")
-  G=$(bc <<< "$L * 255")
-  B=$(bc <<< "$L * 255")
+  R=$(bc <<< "x = ($L * 255); scale = 0; x / 1")
+  G=$(bc <<< "x = ($L * 255); scale = 0; x / 1")
+  B=$(bc <<< "x = ($L * 255); scale = 0; x / 1")
 else
   if [ $(echo "$L < 0.5" | bc -l) -eq 1 ]; then
     var_2=$(echo "$L * (1 + $S)" | bc -l)
@@ -36,14 +36,14 @@ else
 
   temp_vH=$(echo "$H + (1 / 3)" | bc -l)
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$temp_vH"`
-  R=$(bc <<< "x = (255 * $temp_val); scale =0; x / 1")
+  R=$(bc <<< "x = (255 * $temp_val); scale = 0; x / 1")
 
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$H"`
-  G=$(bc <<< "x = (255 * $temp_val); scale =0; x / 1")
+  G=$(bc <<< "x = (255 * $temp_val); scale = 0; x / 1")
 
   temp_vH=$(echo "$H - (1 / 3)" | bc -l)
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$temp_vH"`
-  B=$(bc <<< "x = (255 * $temp_val); scale =0; x / 1")
+  B=$(bc <<< "x = (255 * $temp_val); scale = 0; x / 1")
 fi
 
 printf "%.2x%.2x%.2x" $R $G $B
