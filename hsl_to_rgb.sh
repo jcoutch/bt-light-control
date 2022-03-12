@@ -3,11 +3,11 @@ hue_to_rgb() {
   local v2=$2
   local vH=$3
 
-  if [ $(echo "$vH -lt 0" | bc -l) ]; then vH=0; fi
-  if [ $(echo "$vH -gt 1" | bc -l) ]; then vH=1; fi
-  if [ $(echo "(6 * $vH) -lt 1" | bc -l) ]; then return bc -l <<< "$v1 + ( $v2 - $v1 ) * 6 * $vH"; exit; fi
-  if [ $(echo "(2 * $vH) -lt 1" | bc -l) ]; then echo $v2; exit; fi
-  if [ $(echo "(3 * $vH) -lt 2" | bc -l) ]; then echo $(bc -l <<< "$v1 + ( $v2 - $v1 ) * ( ( 2 / 3 ) - $vH ) * 6"); exit; fi
+  if [ $(echo "$vH -lt 0" | bc -l) -eq 1 ]; then vH=0; fi
+  if [ $(echo "$vH -gt 1" | bc -l) -eq 1 ]; then vH=1; fi
+  if [ $(echo "(6 * $vH) -lt 1" | bc -l) -eq 1 ]; then return bc -l <<< "$v1 + ( $v2 - $v1 ) * 6 * $vH"; exit; fi
+  if [ $(echo "(2 * $vH) -lt 1" | bc -l) -eq 1 ]; then echo $v2; exit; fi
+  if [ $(echo "(3 * $vH) -lt 2" | bc -l) -eq 1 ]; then echo $(bc -l <<< "$v1 + ( $v2 - $v1 ) * ( ( 2 / 3 ) - $vH ) * 6"); exit; fi
 
   echo "$v1"
 }
@@ -21,12 +21,12 @@ G=0
 var_1=0
 var_2=0
 
-if [ $(echo "$S -eq 0" | bc -l) ]; then
+if [ $(echo "$S -eq 0" | bc -l) -eq 1 ]; then
   R=$(bc <<< "$L * 255")
   G=$(bc <<< "$L * 255")
   B=$(bc <<< "$L * 255")
 else
-  if [ $(echo "$L -lt 0.5" | bc -l) ]; then
+  if [ $(echo "$L -lt 0.5" | bc -l) -eq 1 ]; then
     var_2=[ $(echo "$L * (1 + $S)" | bc -l) ]
   else
     var_2=[ $(echo "($L + $S) - ( $S * $L )" | bc -l) ]
