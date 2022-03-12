@@ -17,9 +17,9 @@ bt_controller="hci0"
 mac=$1
 state=$2
 
-hue="$CURRENT_HUE";if [test -z "$hue"]; then $hue="0"; fi
-sat="$CURRENT_SAT";if [test -z "$sat"]; then $sat="1"; fi
-level="$CURRENT_LEVEL";if [test -z "$level"]; then $level="1"; fi
+hue="$CURRENT_HUE";if test -z "$hue"; then hue="0"; fi
+sat="$CURRENT_SAT";if test -z "$sat"; then sat="1"; fi
+level="$CURRENT_LEVEL";if test -z "$level"; then level="1"; fi
 
 case $state in
   on)
