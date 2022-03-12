@@ -28,9 +28,9 @@ hue_to_rgb() {
 
   [$vH -lt 0] && $((vh += 1))
   [$vH -gt 1] && $((vH -= 1))
-  [(( 6 * vH )) -lt 1 ] && return $(( v1 + ( v2 - v1 ) * 6 * vH ))
-  [(( 2 * vH )) -lt 1 ] && return $(( v2 ))
-  [(( 3 * vH )) -lt 2 ] && return $( v1 + ( v2 - v1 ) * ( ( 2 / 3 ) - vH ) * 6))
+  if [(( 6 * vH )) -lt 1 ]; then return $(( v1 + ( v2 - v1 ) * 6 * vH )); fi
+  if [(( 2 * vH )) -lt 1 ]; then return $(( v2 )); fi
+  if [(( 3 * vH )) -lt 2 ]; then return $( v1 + ( v2 - v1 ) * ( ( 2 / 3 ) - vH ) * 6)); fi
 
   return $v1
 }
