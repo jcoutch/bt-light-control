@@ -5,8 +5,8 @@ hue_to_rgb() {
   local v2=$2
   local vH=$3
 
-  if [ $(echo "$vH < 0" | bc -l) -eq 1 ]; then vH=0; fi
-  if [ $(echo "$vH > 1" | bc -l) -eq 1 ]; then vH=1; fi
+  if [ $(echo "$vH < 0" | bc -l) -eq 1 ]; then vH=$(bc -l <<< "$vh + 1"); fi
+  if [ $(echo "$vH > 1" | bc -l) -eq 1 ]; then vH=$(bc -l <<< "$vh - 1"); fi
   if [ $(echo "(6 * $vH) < 1" | bc -l) -eq 1 ]; then echo $(bc -l <<< "$v1 + ( $v2 - $v1 ) * 6 * $vH"); exit; fi
   if [ $(echo "(2 * $vH) < 1" | bc -l) -eq 1 ]; then echo $v2; exit; fi
   if [ $(echo "(3 * $vH) < 2" | bc -l) -eq 1 ]; then echo $(bc -l <<< "$v1 + ( $v2 - $v1 ) * ( ( 2 / 3 ) - $vH ) * 6"); exit; fi
