@@ -19,7 +19,7 @@ state=$2
 
 current_state=`cat ./current-state.json`
 
-if test -z "$current_state"; then
+if test "$current_state"; then
   hue=`echo $current_state|jq ".H"`
   sat=`echo $current_state|jq ".S"`
   level=`echo $current_state|jq ".L"`
