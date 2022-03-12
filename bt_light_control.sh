@@ -17,7 +17,7 @@ bt_controller="hci0"
 mac=$1
 state=$2
 
-current_state=cat ./current-state.json
+current_state=`cat ./current-state.json`
 
 if test -z "$current_state"; then
   hue=`echo $current_state|jq ".H"`
