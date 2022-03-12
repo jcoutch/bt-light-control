@@ -38,14 +38,14 @@ else
 
   temp_vH=$(echo "$H + (1 / 3)" | bc -l)
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$temp_vH"`
-  R=$(bc <<< "255 * $temp_val")
+  R=$(bc <<< "scale=0; 255 * $temp_val")
 
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$H"`
-  G=$(bc <<< "255 * $temp_val")
+  G=$(bc <<< "scale=0; 255 * $temp_val")
 
   temp_vH=$(echo "$H - (1 / 3)" | bc -l)
   temp_val=`hue_to_rgb "$var_1" "$var_2" "$temp_vH"`
-  B=$(bc <<< "255 * $temp_val")
+  B=$(bc <<< "scale=0; 255 * $temp_val")
 fi
 
 printf "%.2x%.2x%.2x" $R $G $B
