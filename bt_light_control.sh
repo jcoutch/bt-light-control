@@ -81,17 +81,17 @@ case $state in
     ;;
   
   color)
-    hue = $3
-    sat = $4
+    hue=$3
+    sat=$4
 
     rgb_color = hsl_to_rgb $hue $sat $level
     gatttool -i $bt_controller -b $mac --char-write-req -a 0x0009 -n "56${rgb_color}00f0aa"
     ;;
   
   level)
-    level = $3
+    level=$3
 
-    rgb_color = hsl_to_rgb $hue $sat $level
+    rgb_color=hsl_to_rgb $hue $sat $level
     gatttool -i $bt_controller -b $mac --char-write-req -a 0x0009 -n "56${rgb_color}00f0aa"
     ;;
 esac
