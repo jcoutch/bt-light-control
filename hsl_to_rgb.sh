@@ -1,3 +1,11 @@
+# hsl_to_rgb.sh <H> <S> <L>
+#
+# example: ./hsl_to_rgb.sh 90 100 50
+#
+# H - value from 0 to 360
+# S - value from 0 to 100
+# L - value from 0 to 100
+
 hue_to_rgb() {
   local v1=$1
   local v2=$2
@@ -12,9 +20,9 @@ hue_to_rgb() {
   echo "$v1"
 }
 
-H=$1
-S=$2
-L=$3
+H=$(bc -l <<< "$1 / 360")
+S=$(bc -l <<< "$2 / 100")
+L=$(bc -l <<< "$3 / 100")
 R=0
 B=0
 G=0

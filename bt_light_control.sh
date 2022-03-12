@@ -9,8 +9,8 @@
 #
 # Turn on:          bt_light_control.sh 00:00:00:00:00:00 on
 # Turn off:         bt_light_control.sh 00:00:00:00:00:00 off
-# Set level to 25%: bt_light_control.sh 00:00:00:00:00:00 level 0.25
-# Adjust hue/sat:   bt_light_control.sh 00:00:00:00:00:00 color 0.10 0.70
+# Set level to 25%: bt_light_control.sh 00:00:00:00:00:00 level 25
+# Adjust hue/sat:   bt_light_control.sh 00:00:00:00:00:00 color 45 70
 
 bt_controller="hci0"
 
