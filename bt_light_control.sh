@@ -13,6 +13,7 @@
 # Adjust hue/sat:   bt_light_control.sh 00:00:00:00:00:00 color 45 70
 
 bt_controller="hci0"
+SCRIPT_PATH="$(dirname $BASH_SOURCE)"
 
 mac=$1
 state=$2
@@ -42,14 +43,14 @@ case $state in
     hue=$3
     sat=$4
 
-    rgb_color=`./hsl_to_rgb.sh "$hue" "$sat" "$level"`
+    rgb_color=`$SCRIPT_PATH/hsl_to_rgb.sh "$hue" "$sat" "$level"`
     gatttool -i $bt_controller -b $mac --char-write-req -a 0x0009 -n "56${rgb_color}00f0aa"
     ;;
   
   level)
     level=$3
 
-    rgb_color=`./hsl_to_rgb.sh "$hue" "$sat" "$level"`
+    rgb_color=`$SCRIPT_PATH/hsl_to_rgb.sh "$hue" "$sat" "$level"`
     gatttool -i $bt_controller -b $mac --char-write-req -a 0x0009 -n "56${rgb_color}00f0aa"
     ;;
 esac
