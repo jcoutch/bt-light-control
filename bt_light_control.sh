@@ -17,9 +17,17 @@ bt_controller="hci0"
 mac=$1
 state=$2
 
-hue="$CURRENT_HUE";if test -z "$hue"; then hue="0"; fi
-sat="$CURRENT_SAT";if test -z "$sat"; then sat="0"; fi
-level="$CURRENT_LEVEL";if test -z "$level"; then level=".5"; fi
+current_state=cat ./current-state.json
+
+if test -z "$current_state"; then
+  hue=`echo $current_state|jq ".H"`
+  sat=`echo $current_state|jq ".S"`
+  level=`echo $current_state|jq ".L"`
+fi
+
+if test -z "$hue"; then hue="0"; fi
+if test -z "$sat"; then sat="0"; fi
+if test -z "$level"; then level=".5"; fi
 
 case $state in
   on)
@@ -46,6 +54,4 @@ case $state in
     ;;
 esac
 
-export CURRENT_HUE=$hue
-export CURRENT_SAT=$sat
-export CURRENT_LEVEL=$level
+echo "{ \"H\": $hue, \"S\": $sat, \"L\": $level }" > current-state.json
