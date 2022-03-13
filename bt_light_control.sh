@@ -57,4 +57,4 @@ esac
 
 echo "{ \"H\": $hue, \"S\": $sat, \"L\": $level }" > current-state.json
 
-echo "Light Color: $rgb_color, State: $state, Script Path: $SCRIPT_PATH"
+echo "Light Color: $rgb_color, State: $state, Level: $level, Hue: $hue, Sat: $sat, Script Path: $SCRIPT_PATH"
