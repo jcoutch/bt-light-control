@@ -4,7 +4,7 @@
 #
 # H - value from 0 to 360
 # S - value from 0 to 100
-# L - value from 0 to 255
+# L - value from 0 to 255 (I'm dividing by 511 since full luminance is achieved at 50% with my light strand)
 
 hue_to_rgb() {
   local v1=$1
@@ -22,7 +22,7 @@ hue_to_rgb() {
 
 H=$(bc -l <<< "$1 / 360")
 S=$(bc -l <<< "$2 / 100")
-L=$(bc -l <<< "$3 / 255")
+L=$(bc -l <<< "$3 / 511")
 R=0
 B=0
 G=0
