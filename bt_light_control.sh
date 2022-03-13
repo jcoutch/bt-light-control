@@ -28,7 +28,7 @@ fi
 
 if test -z "$hue"; then hue="0"; fi
 if test -z "$sat"; then sat="0"; fi
-if test -z "$level"; then level=".5"; fi
+if test -z "$level"; then level="50"; fi
 
 case $state in
   on)
