@@ -56,3 +56,5 @@ case $state in
 esac
 
 echo "{ \"H\": $hue, \"S\": $sat, \"L\": $level }" > current-state.json
+
+echo "Light Color: $rgb_color, State: $state, Script Path: $SCRIPT_PATH"
